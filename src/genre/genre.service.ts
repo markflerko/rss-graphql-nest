@@ -12,6 +12,35 @@ export class GenreService {
     private readonly usersService: UsersService,
   ) {}
 
+  async update(
+    id: string,
+    input: GenreInput,
+  ): Promise<AxiosResponse<GenreType>> {
+    const token = await this.usersService.getToken();
+
+    return await this.httpService.axiosRef
+      .put(`${id}`, input, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => res.data);
+  }
+
+  async delete(
+    id: string,
+  ): Promise<AxiosResponse<{ acknowledged: boolean; deletedCount: number }>> {
+    const token = await this.usersService.getToken();
+
+    return await this.httpService.axiosRef
+      .delete(`${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => res.data);
+  }
+
   async create(input: GenreInput): Promise<AxiosResponse<GenreType>> {
     const token = await this.usersService.getToken();
 
@@ -22,6 +51,10 @@ export class GenreService {
         },
       })
       .then((res) => res.data);
+  }
+
+  async findOne(id: string): Promise<AxiosResponse<GenreType>> {
+    return await this.httpService.axiosRef.get(`${id}`).then((res) => res.data);
   }
 
   async findAll(): Promise<AxiosResponse<GenreType[]>> {

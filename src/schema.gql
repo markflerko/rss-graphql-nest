@@ -10,17 +10,25 @@ type GenreType {
   year: Int!
 }
 
+type DeleteGenre {
+  deletedCount: Int
+  acknowledged: Boolean
+}
+
 type Query {
   genres: [GenreType!]!
+  genre(id: String!): GenreType!
 }
 
 type Mutation {
   createGenre(input: GenreInput!): GenreType!
+  deleteGenre(id: String!): DeleteGenre!
+  updateGenre(id: String!, input: GenreInput!): GenreType!
 }
 
 input GenreInput {
-  name: String!
-  description: String!
-  country: String!
-  year: Int!
+  name: String
+  description: String
+  country: String
+  year: Int
 }
