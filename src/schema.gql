@@ -2,25 +2,25 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type CatType {
-  id: ID!
+type GenreType {
+  _id: ID!
   name: String!
-  age: Int!
-  breed: String!
+  description: String!
+  country: String!
+  year: Int!
 }
 
 type Query {
-  hello: String!
-  cats: [CatType!]!
+  genres: [GenreType!]!
 }
 
 type Mutation {
-  createCat(input: CatInput!): CatType!
+  createGenre(input: GenreInput!): GenreType!
 }
 
-input CatInput {
-  id: ID!
+input GenreInput {
   name: String!
-  age: Int!
-  breed: String!
+  description: String!
+  country: String!
+  year: Int!
 }
