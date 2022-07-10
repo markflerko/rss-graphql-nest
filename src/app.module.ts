@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { GenreModule } from './cats/genre.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { GenreModule } from './cats/genre.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
     GenreModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
