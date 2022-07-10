@@ -6,6 +6,8 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { join } from 'path';
 import { GenreModule } from './genre/genre.module';
 import { UsersModule } from './users/users.module';
+import { ArtistModule } from './artist/artist.module';
+import { BandModule } from './band/band.module';
 
 @Module({
   imports: [
@@ -20,6 +22,8 @@ import { UsersModule } from './users/users.module';
     }),
     GenreModule,
     UsersModule,
+    ArtistModule,
+    BandModule,
   ],
 })
 export class AppModule {}
