@@ -2,6 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type UserType {
+  _id: ID!
+  firstName: String
+  lastName: String
+  password: String
+  email: String!
+}
+
 type GenreType {
   _id: ID!
   name: String!
@@ -18,6 +26,7 @@ type DeleteGenre {
 type Query {
   genres: [GenreType!]!
   genre(id: String!): GenreType!
+  user(id: String!): UserType!
 }
 
 type Mutation {
