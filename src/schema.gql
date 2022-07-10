@@ -4,10 +4,14 @@
 
 type UserType {
   _id: ID!
-  firstName: String
-  lastName: String
-  password: String
+  firstName: String!
+  lastName: String!
+  password: String!
   email: String!
+}
+
+type LoginType {
+  jwt: String
 }
 
 type GenreType {
@@ -26,13 +30,20 @@ type DeleteGenre {
 type Query {
   genres: [GenreType!]!
   genre(id: String!): GenreType!
+  jwt(input: LoginInput!): LoginType!
   user(id: String!): UserType!
+}
+
+input LoginInput {
+  password: String
+  email: String
 }
 
 type Mutation {
   createGenre(input: GenreInput!): GenreType!
   deleteGenre(id: String!): DeleteGenre!
   updateGenre(id: String!, input: GenreInput!): GenreType!
+  register(input: UserInput!): UserType!
 }
 
 input GenreInput {
@@ -40,4 +51,12 @@ input GenreInput {
   description: String
   country: String
   year: Int
+}
+
+input UserInput {
+  firstName: String
+  lastName: String
+  password: String
+  email: String!
+  favouriteArtistIds: [String!]
 }

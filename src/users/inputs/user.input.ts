@@ -1,4 +1,4 @@
-import { Field, InputType, Int } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
 export class UserInput {
@@ -13,4 +13,7 @@ export class UserInput {
 
   @Field(() => String, { nullable: false })
   readonly email: string;
+
+  @Field(() => [String], { nullable: true })
+  readonly favouriteArtistIds: string[];
 }

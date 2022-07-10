@@ -2,12 +2,20 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { UserType } from './dto/create-user.dto';
+import { LoginInput } from './inputs/login.input';
+import { UserInput } from './inputs/user.input';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly httpService: HttpService) {}
 
-  async getUserById(id: string): Promise<AxiosResponse<UserType[]>> {
+  async register(input: UserInput): Promise<AxiosResponse<UserType>> {
+    return await this.httpService.axiosRef
+      .post('register', input)
+      .then((res) => res.data);
+  }
+
+  async getUserById(id: string): Promise<AxiosResponse<UserType>> {
     const token = await this.getToken();
 
     return await this.httpService.axiosRef
@@ -19,12 +27,16 @@ export class UsersService {
       .then((res) => res.data);
   }
 
-  async getToken(): Promise<string> {
-    return await this.httpService.axiosRef
-      .post('login', {
+  async getToken(input: LoginInput = null): Promise<string> {
+    if (input === null) {
+      input = {
         password: '12345678',
         email: 'markflerko@gmail.com',
-      })
+      };
+    }
+
+    return await this.httpService.axiosRef
+      .post('login', input)
       .then((res) => res.data?.jwt);
   }
 }
