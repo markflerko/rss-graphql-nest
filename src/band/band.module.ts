@@ -1,8 +1,16 @@
+import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
-import { BandService } from './band.service';
+import { UsersModule } from 'src/users/users.module';
 import { BandResolver } from './band.resolver';
+import { BandService } from './band.service';
 
 @Module({
-  providers: [BandService, BandResolver]
+  imports: [
+    HttpModule.register({
+      baseURL: 'http://localhost:3003/v1/bands',
+    }),
+    UsersModule,
+  ],
+  providers: [BandService, BandResolver],
 })
 export class BandModule {}

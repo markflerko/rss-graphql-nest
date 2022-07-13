@@ -27,6 +27,20 @@ type DeleteGenre {
   acknowledged: Boolean
 }
 
+type MemberType {
+  _id: ID!
+  name: String
+}
+
+type BandType {
+  _id: ID!
+  name: String
+  origin: String
+  genres: [GenreType!]
+  website: String
+  members: [MemberType!]
+}
+
 type Query {
   genres: [GenreType!]!
   genre(id: String!): GenreType!
@@ -44,6 +58,7 @@ type Mutation {
   deleteGenre(id: String!): DeleteGenre!
   updateGenre(id: String!, input: GenreInput!): GenreType!
   register(input: UserInput!): UserType!
+  createBand(input: BandInput!): BandType!
 }
 
 input GenreInput {
@@ -59,4 +74,17 @@ input UserInput {
   password: String
   email: String!
   favouriteArtistIds: [String!]
+}
+
+input BandInput {
+  name: String
+  origin: String
+  genresIds: [ID!]
+  website: String
+  members: [MemberInput!]
+}
+
+input MemberInput {
+  _id: ID!
+  name: String
 }
