@@ -1,7 +1,11 @@
-import { Field, InputType, Int } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Band } from 'src/band/dto/create-band.dto';
 
-@InputType()
-export class ArtistInput {
+@ObjectType()
+export class Artist {
+  @Field(() => ID, { nullable: true })
+  readonly _id: string;
+
   @Field(() => String, { nullable: true })
   readonly firstName: string;
 
@@ -22,4 +26,7 @@ export class ArtistInput {
 
   @Field(() => [String], { nullable: true })
   readonly instruments: string[];
+
+  @Field(() => [Band], { nullable: true })
+  readonly bands: Band[];
 }

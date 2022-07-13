@@ -46,11 +46,30 @@ type DeleteBand {
   acknowledged: Boolean
 }
 
+type Artist {
+  _id: ID
+  firstName: String
+  secondName: String
+  middleName: String
+  birthDate: String
+  birthPlace: String
+  country: String
+  instruments: [String!]
+  bands: [Band!]
+}
+
+type DeleteArtist {
+  deletedCount: Int
+  acknowledged: Boolean
+}
+
 type Query {
   genres: [Genre!]!
   genre(id: String!): Genre!
   jwt(input: LoginInput!): Login!
   user(id: String!): User!
+  artist(id: String!): Artist!
+  artists: [Artist!]!
   band(id: String!): Band!
   bands: [Band!]!
 }
@@ -65,6 +84,9 @@ type Mutation {
   deleteGenre(id: String!): DeleteGenre!
   updateGenre(id: String!, input: GenreInput!): Genre!
   register(input: UserInput!): User!
+  deleteArtist(id: String!): DeleteArtist!
+  createArtist(input: ArtistInput!): Artist!
+  updateArtist(id: String!, input: ArtistInput!): Artist!
   deleteBand(id: String!): DeleteBand!
   createBand(input: BandInput!): Band!
   updateBand(id: String!, input: BandInput!): Band!
@@ -83,6 +105,17 @@ input UserInput {
   password: String
   email: String!
   favouriteArtistIds: [String!]
+}
+
+input ArtistInput {
+  firstName: String
+  secondName: String
+  middleName: String
+  birthDate: String
+  birthPlace: String
+  country: String
+  instruments: [String!]
+  bandsIds: [ID!]
 }
 
 input BandInput {

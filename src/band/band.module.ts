@@ -14,5 +14,6 @@ import { BandService } from './band.service';
     GenreModule,
   ],
   providers: [BandService, BandResolver],
+  exports: [BandService],
 })
 export class BandModule {}

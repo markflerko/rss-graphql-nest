@@ -1,5 +1,4 @@
 import { Field, ID, InputType } from '@nestjs/graphql';
-import { GenreInput } from 'src/genre/inputs/genre.input';
 import { Member } from '../dto/create-band.dto';
 
 @InputType()
