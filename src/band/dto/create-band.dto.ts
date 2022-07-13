@@ -12,7 +12,7 @@ export class Member {
 
 @ObjectType()
 export class Band {
-  @Field(() => ID)
+  @Field(() => ID, { nullable: true })
   readonly _id: string;
 
   @Field(() => String, { nullable: true })

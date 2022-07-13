@@ -33,12 +33,17 @@ type Member {
 }
 
 type Band {
-  _id: ID!
+  _id: ID
   name: String
   origin: String
   genres: [Genre!]
   website: String
   members: [Member!]
+}
+
+type DeleteBand {
+  deletedCount: Int
+  acknowledged: Boolean
 }
 
 type Query {
@@ -60,7 +65,9 @@ type Mutation {
   deleteGenre(id: String!): DeleteGenre!
   updateGenre(id: String!, input: GenreInput!): Genre!
   register(input: UserInput!): User!
+  deleteBand(id: String!): DeleteBand!
   createBand(input: BandInput!): Band!
+  updateBand(id: String!, input: BandInput!): Band!
 }
 
 input GenreInput {

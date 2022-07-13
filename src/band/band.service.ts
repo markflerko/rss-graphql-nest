@@ -12,6 +12,20 @@ export class BandService {
     private readonly usersService: UsersService,
   ) {}
 
+  async delete(
+    id: string,
+  ): Promise<AxiosResponse<{ acknowledged: boolean; deletedCount: number }>> {
+    const token = await this.usersService.getToken();
+
+    return await this.httpService.axiosRef
+      .delete(`${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => res.data);
+  }
+
   async findOne(id: string): Promise<AxiosResponse<Band>> {
     return await this.httpService.axiosRef.get(`${id}`).then((res) => res.data);
   }
@@ -27,6 +41,18 @@ export class BandService {
 
     return await this.httpService.axiosRef
       .post('', input, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => res.data);
+  }
+
+  async update(id: string, input: BandInput): Promise<AxiosResponse<Band>> {
+    const token = await this.usersService.getToken();
+
+    return await this.httpService.axiosRef
+      .put(`${id}`, input, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
