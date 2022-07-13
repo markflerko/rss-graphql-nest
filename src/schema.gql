@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type UserType {
+type User {
   _id: ID!
   firstName: String!
   lastName: String!
@@ -10,16 +10,16 @@ type UserType {
   email: String!
 }
 
-type LoginType {
+type Login {
   jwt: String
 }
 
-type GenreType {
-  _id: ID!
-  name: String!
-  description: String!
-  country: String!
-  year: Int!
+type Genre {
+  _id: ID
+  name: String
+  description: String
+  country: String
+  year: Int
 }
 
 type DeleteGenre {
@@ -27,25 +27,27 @@ type DeleteGenre {
   acknowledged: Boolean
 }
 
-type MemberType {
-  _id: ID!
+type Member {
+  _id: ID
   name: String
 }
 
-type BandType {
+type Band {
   _id: ID!
   name: String
   origin: String
-  genres: [GenreType!]
+  genres: [Genre!]
   website: String
-  members: [MemberType!]
+  members: [Member!]
 }
 
 type Query {
-  genres: [GenreType!]!
-  genre(id: String!): GenreType!
-  jwt(input: LoginInput!): LoginType!
-  user(id: String!): UserType!
+  genres: [Genre!]!
+  genre(id: String!): Genre!
+  jwt(input: LoginInput!): Login!
+  user(id: String!): User!
+  band(id: String!): Band!
+  bands: [Band!]!
 }
 
 input LoginInput {
@@ -54,11 +56,11 @@ input LoginInput {
 }
 
 type Mutation {
-  createGenre(input: GenreInput!): GenreType!
+  createGenre(input: GenreInput!): Genre!
   deleteGenre(id: String!): DeleteGenre!
-  updateGenre(id: String!, input: GenreInput!): GenreType!
-  register(input: UserInput!): UserType!
-  createBand(input: BandInput!): BandType!
+  updateGenre(id: String!, input: GenreInput!): Genre!
+  register(input: UserInput!): User!
+  createBand(input: BandInput!): Band!
 }
 
 input GenreInput {
@@ -85,6 +87,6 @@ input BandInput {
 }
 
 input MemberInput {
-  _id: ID!
+  _id: ID
   name: String
 }

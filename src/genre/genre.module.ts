@@ -12,6 +12,7 @@ import { GenreService } from './genre.service';
     UsersModule,
   ],
   providers: [GenreService, GenreResolver],
+  exports: [GenreService],
   controllers: [],
 })
 export class GenreModule {}

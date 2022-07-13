@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { UsersService } from 'src/users/users.service';
-import { GenreType } from './dto/create-genre.dto';
+import { Genre } from './dto/create-genre.dto';
 import { GenreInput } from './inputs/genre.input';
 
 @Injectable()
@@ -12,10 +12,7 @@ export class GenreService {
     private readonly usersService: UsersService,
   ) {}
 
-  async update(
-    id: string,
-    input: GenreInput,
-  ): Promise<AxiosResponse<GenreType>> {
+  async update(id: string, input: GenreInput): Promise<AxiosResponse<Genre>> {
     const token = await this.usersService.getToken();
 
     return await this.httpService.axiosRef
@@ -41,7 +38,7 @@ export class GenreService {
       .then((res) => res.data);
   }
 
-  async create(input: GenreInput): Promise<AxiosResponse<GenreType>> {
+  async create(input: GenreInput): Promise<AxiosResponse<Genre>> {
     const token = await this.usersService.getToken();
 
     return await this.httpService.axiosRef
@@ -53,11 +50,11 @@ export class GenreService {
       .then((res) => res.data);
   }
 
-  async findOne(id: string): Promise<AxiosResponse<GenreType>> {
+  async findOne(id: string): Promise<AxiosResponse<Genre>> {
     return await this.httpService.axiosRef.get(`${id}`).then((res) => res.data);
   }
 
-  async findAll(): Promise<AxiosResponse<GenreType[]>> {
+  async findAll(): Promise<AxiosResponse<Genre[]>> {
     return await this.httpService.axiosRef
       .get('')
       .then((res) => res.data?.items);

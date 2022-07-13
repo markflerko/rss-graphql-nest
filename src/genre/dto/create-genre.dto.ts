@@ -1,15 +1,15 @@
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class GenreType {
-  @Field(() => ID)
+export class Genre {
+  @Field(() => ID, { nullable: true })
   readonly _id: string;
-  @Field()
+  @Field({ nullable: true })
   readonly name: string;
-  @Field()
+  @Field({ nullable: true })
   readonly description: string;
-  @Field()
+  @Field({ nullable: true })
   readonly country: string;
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   readonly year: number;
 }

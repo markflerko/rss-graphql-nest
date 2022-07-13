@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { AxiosResponse } from 'axios';
 import { UsersService } from 'src/users/users.service';
-import { BandType } from './dto/create-band.dto';
+import { Band } from './dto/create-band.dto';
 import { BandInput } from './inputs/band.input';
 
 @Injectable()
@@ -12,7 +12,17 @@ export class BandService {
     private readonly usersService: UsersService,
   ) {}
 
-  async create(input: BandInput): Promise<AxiosResponse<BandType>> {
+  async findOne(id: string): Promise<AxiosResponse<Band>> {
+    return await this.httpService.axiosRef.get(`${id}`).then((res) => res.data);
+  }
+
+  async findAll(): Promise<AxiosResponse<Band[]>> {
+    return await this.httpService.axiosRef
+      .get('')
+      .then((res) => res.data?.items);
+  }
+
+  async create(input: BandInput): Promise<AxiosResponse<Band>> {
     const token = await this.usersService.getToken();
 
     return await this.httpService.axiosRef

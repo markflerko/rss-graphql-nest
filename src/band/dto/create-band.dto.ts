@@ -1,9 +1,9 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { GenreType } from 'src/genre/dto/create-genre.dto';
+import { Genre } from 'src/genre/dto/create-genre.dto';
 
 @ObjectType()
-export class MemberType {
-  @Field(() => ID)
+export class Member {
+  @Field(() => ID, { nullable: true })
   _id: string;
 
   @Field(() => String, { nullable: true })
@@ -11,7 +11,7 @@ export class MemberType {
 }
 
 @ObjectType()
-export class BandType {
+export class Band {
   @Field(() => ID)
   readonly _id: string;
 
@@ -21,12 +21,12 @@ export class BandType {
   @Field(() => String, { nullable: true })
   readonly origin: string;
 
-  @Field(() => [GenreType], { nullable: true })
-  readonly genres: GenreType[];
+  @Field(() => [Genre], { nullable: true })
+  readonly genres: Genre[];
 
   @Field(() => String, { nullable: true })
   readonly website: string;
 
-  @Field(() => [MemberType], { nullable: true })
-  readonly members: MemberType[];
+  @Field(() => [Member], { nullable: true })
+  readonly members: Member[];
 }

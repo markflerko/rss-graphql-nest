@@ -1,9 +1,10 @@
 import { Field, ID, InputType } from '@nestjs/graphql';
-import { MemberType } from '../dto/create-band.dto';
+import { GenreInput } from 'src/genre/inputs/genre.input';
+import { Member } from '../dto/create-band.dto';
 
 @InputType()
 export class MemberInput {
-  @Field(() => ID)
+  @Field(() => ID, { nullable: true })
   _id: string;
 
   @Field(() => String, { nullable: true })
@@ -25,5 +26,5 @@ export class BandInput {
   readonly website: string;
 
   @Field(() => [MemberInput], { nullable: true })
-  readonly members: MemberType[];
+  readonly members: Member[];
 }
