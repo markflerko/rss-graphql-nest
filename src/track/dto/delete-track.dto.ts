@@ -1,7 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class DeleteArtist {
+export class DeleteTrack {
   @Field(() => Int, { nullable: true })
   deletedCount: number;
 

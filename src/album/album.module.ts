@@ -18,5 +18,6 @@ import { AlbumService } from './album.service';
     GenreModule,
   ],
   providers: [AlbumService, AlbumResolver],
+  exports: [AlbumService],
 })
 export class AlbumModule {}

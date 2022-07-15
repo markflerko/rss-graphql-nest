@@ -4,12 +4,13 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { join } from 'path';
-import { GenreModule } from './genre/genre.module';
-import { UsersModule } from './users/users.module';
+import { AlbumModule } from './album/album.module';
 import { ArtistModule } from './artist/artist.module';
 import { BandModule } from './band/band.module';
+import { FavouritesModule } from './favourites/favourites.module';
+import { GenreModule } from './genre/genre.module';
 import { TrackModule } from './track/track.module';
-import { AlbumModule } from './album/album.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { AlbumModule } from './album/album.module';
     BandModule,
     TrackModule,
     AlbumModule,
+    FavouritesModule,
   ],
 })
 export class AppModule {}

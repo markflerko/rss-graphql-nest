@@ -63,17 +63,34 @@ type DeleteArtist {
   acknowledged: Boolean
 }
 
+type Track {
+  _id: ID
+  title: String!
+  album: Album
+  artists: [Artist!]
+  bands: [Band!]
+  duration: Int
+  released: Int
+  genres: [Genre!]
+}
+
 type Album {
   _id: ID
   name: String
   released: Int
   artists: [Artist!]
   bands: [Band!]
+  tracks: [Track!]
   genres: [Genre!]
   image: String
 }
 
 type DeleteAlbum {
+  deletedCount: Int
+  acknowledged: Boolean
+}
+
+type DeleteTrack {
   deletedCount: Int
   acknowledged: Boolean
 }
@@ -87,6 +104,8 @@ type Query {
   artists: [Artist!]!
   band(id: String!): Band!
   bands: [Band!]!
+  track(id: String!): Track!
+  tracks: [Track!]!
   album(id: String!): Album!
   albums: [Album!]!
 }
@@ -107,6 +126,9 @@ type Mutation {
   deleteBand(id: String!): DeleteBand!
   createBand(input: BandInput!): Band!
   updateBand(id: String!, input: BandInput!): Band!
+  deleteTrack(id: String!): DeleteTrack!
+  createTrack(input: TrackInput!): Track!
+  updateTrack(id: String!, input: TrackInput!): Track!
   deleteAlbum(id: String!): DeleteAlbum!
   createAlbum(input: AlbumInput!): Album!
   updateAlbum(id: String!, input: AlbumInput!): Album!
@@ -149,6 +171,16 @@ input BandInput {
 input MemberInput {
   _id: ID
   name: String
+}
+
+input TrackInput {
+  title: String
+  albumId: String
+  artistsIds: [String!]
+  bandsIds: [String!]
+  duration: Int
+  released: Int
+  genresIds: [String!]
 }
 
 input AlbumInput {
