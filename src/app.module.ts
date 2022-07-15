@@ -8,6 +8,8 @@ import { GenreModule } from './genre/genre.module';
 import { UsersModule } from './users/users.module';
 import { ArtistModule } from './artist/artist.module';
 import { BandModule } from './band/band.module';
+import { TrackModule } from './track/track.module';
+import { AlbumModule } from './album/album.module';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import { BandModule } from './band/band.module';
     UsersModule,
     ArtistModule,
     BandModule,
+    TrackModule,
+    AlbumModule,
   ],
 })
 export class AppModule {}

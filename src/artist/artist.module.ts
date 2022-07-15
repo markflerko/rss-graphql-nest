@@ -14,5 +14,6 @@ import { ArtistService } from './artist.service';
     BandModule,
   ],
   providers: [ArtistService, ArtistResolver],
+  exports: [ArtistService],
 })
 export class ArtistModule {}
