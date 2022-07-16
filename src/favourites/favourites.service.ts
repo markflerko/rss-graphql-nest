@@ -13,9 +13,15 @@ export class FavouritesService {
   ) {}
 
   async findAll(): Promise<AxiosResponse<PutFavouritesResDto>> {
+    const token = await this.usersService.getToken();
+
     return await this.httpService.axiosRef
-      .get('')
-      .then((res) => res.data?.items);
+      .get('', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => res.data);
   }
 
   async remove(

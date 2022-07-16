@@ -9,6 +9,22 @@ import { UserInput } from './inputs/user.input';
 export class UsersService {
   constructor(private readonly httpService: HttpService) {}
 
+  // async verify(): Promise<AxiosResponse<User>> {
+  //   const token = await this.getToken();
+
+  //   return await this.httpService.axiosRef
+  //     .post(
+  //       'verify',
+  //       {},
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       },
+  //     )
+  //     .then((res) => res.data);
+  // }
+
   async register(input: UserInput): Promise<AxiosResponse<User>> {
     return await this.httpService.axiosRef
       .post('register', input)

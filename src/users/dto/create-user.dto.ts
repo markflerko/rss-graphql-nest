@@ -11,7 +11,7 @@ export class User {
   @Field(() => String, { nullable: false })
   readonly lastName: string;
 
-  @Field(() => String, { nullable: false })
+  @Field(() => String, { nullable: true })
   readonly password: string;
 
   @Field(() => String, { nullable: false })
